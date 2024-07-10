@@ -143,6 +143,8 @@ void MainWindow::on_pushButton_testConn_clicked()
                     .arg("Server is listening, number of connected clients:")
                     .arg(QString::number(server->getClients().count()))
                     );
+
+        logMessage("[connect] Succeed");
     }
     else
     {
@@ -151,6 +153,7 @@ void MainWindow::on_pushButton_testConn_clicked()
                     .arg("Server is not listening, number of connected clients:")
                     .arg(QString::number(server->getClients().count()))
                     );
+        logMessage("[disconnect] Succeed");
     }
 }
 
@@ -198,6 +201,9 @@ void MainWindow::gotNewMesssage(QString msg)
     } else {
         ui->textEdit_log->append(QString("New message: %1").arg(msg));
     }
+
+    // log message
+    logMessage("[msg-receive]"+msg);
 }
 
 void MainWindow::onBtnStatusClicked(QAbstractButton*btn)
@@ -219,6 +225,12 @@ void MainWindow::onBtnStatusClicked(QAbstractButton*btn)
         {
             server->sendToClient(clients.at(i), QString("[STATUS]%1#%2").arg(status).arg(data.toInt()));
         }
+
+        // log message
+        QString message = QString("[status_changed] line:'%1' new_status:'%2'")
+                .arg(data.toInt())
+                .arg(status);
+        logMessage(message);
     }
     else
     {
@@ -235,6 +247,17 @@ void MainWindow::onBtnClearClicked()
     QLabel *label3 = qobject_cast<QLabel*>(hLayout->itemAt(2)->widget());
     QPushButton *button1 = qobject_cast<QPushButton*>(hLayout->itemAt(3)->widget());
 
+    qDebug() << button1->parentWidget();
+    QButtonGroup *btnGroup = qobject_cast<QButtonGroup*>(button1->parentWidget());
+
+    // log message
+    QString message = QString("[clear] room:'%1' task:'%2' last_status:'%3'")
+            .arg(label1->text())
+            .arg(label2->text())
+            .arg(button1->text());
+    logMessage(message);
+
+    // clear setting
     label1->setText("Room #");
     label2->setText("Task #");
     label3->setText("red");
@@ -264,6 +287,11 @@ void MainWindow::on_pushButton_sendURL_clicked()
         {
             server->sendToClient(clients.at(i), "[URL]" + ui->lineEdit_URL->text());
         }
+
+        // log message
+        QString message = QString("[send-url] url:'%1'").arg(ui->lineEdit_URL->text());
+        logMessage(message);
+
     }
     else
     {

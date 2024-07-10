@@ -40,6 +40,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     ServerStuff *server;
+
+    QList<QString> m_curStatusList;
 };
 
 #endif // MAINWINDOW_H

@@ -1,0 +1,15 @@
+2024-07-10 00:28:38 - [clear] room:'In station' task:'Water' last_status:'Ready'
+2024-07-10 00:29:35 - [clear] room:'Room 3' task:'Patient request' last_status:'Ready'
+2024-07-10 02:12:34 - [clear] room:'Room #' task:'Task #' last_status:'Ready'
+2024-07-10 02:12:38 - [clear] room:'Room #' task:'Task #' last_status:'Ready'
+2024-07-11 04:23:57 - [clear] room:'Room 2' task:'Medication' last_status:'Ready'
+2024-07-11 04:24:01 - [clear] room:'Room #' task:'Task #' last_status:'Ready'
+2024-07-11 04:51:25 - Room 1#Patient request#0
+2024-07-11 04:51:27 - [status_changed] line:'0' new_status:'Start'
+2024-07-11 04:51:28 - [status_changed] line:'0' new_status:'Completed'
+2024-07-11 04:51:29 - [status_changed] line:'0' new_status:'Ready'
+2024-07-11 04:51:30 - [status_changed] line:'0' new_status:'Start'
+2024-07-11 04:51:35 - Room 3#Patient request#1
+2024-07-11 04:51:45 - [send-url] url:'http://localhost'
+2024-07-11 04:51:52 - [connect] Succeed
+2024-07-11 04:51:56 - qsadfsadf

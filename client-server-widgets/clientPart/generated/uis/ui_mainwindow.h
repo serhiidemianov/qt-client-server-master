@@ -52,7 +52,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(730, 454);
+        MainWindow->resize(750, 454);
         MainWindow->setStyleSheet(QLatin1String("#centralWidget {\n"
 "	background-color: rgb(122, 210, 246);\n"
 "}\n"
@@ -209,7 +209,7 @@ public:
         labelTitle->setText(QApplication::translate("MainWindow", "Nurse Station View", 0));
         QTableWidgetItem *___qtablewidgetitem = tblRooms->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Room #", 0));
-        pushButton_link->setText(QApplication::translate("MainWindow", "Link URL", 0));
+        pushButton_link->setText(QApplication::translate("MainWindow", "Enter Service Room", 0));
         lineEdit_message->setPlaceholderText(QApplication::translate("MainWindow", "Type here message", 0));
         pushButton_send->setText(QApplication::translate("MainWindow", "Send", 0));
         QTableWidgetItem *___qtablewidgetitem1 = tblTasks->horizontalHeaderItem(0);

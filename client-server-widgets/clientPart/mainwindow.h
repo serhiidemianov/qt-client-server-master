@@ -45,11 +45,6 @@ private:
     ClientStuff *client;
 
     QStringList m_rooms, m_tasks;
-
-    QList<QComboBox*> comboBox1List;
-    QList<QComboBox*> comboBox2List;
-    QList<QPushButton*> buttonList;
-    QList<QLabel*> labelList;
 };
 
 #endif // MAINWINDOW_H

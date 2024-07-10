@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>730</width>
+    <width>750</width>
     <height>454</height>
    </rect>
   </property>
@@ -78,7 +78,7 @@ font: Bold 30pt &quot;MS Shell Dlg 2&quot;;
            </font>
           </property>
           <property name="text">
-           <string>Link URL</string>
+           <string>Enter Service Room</string>
           </property>
          </widget>
         </item>

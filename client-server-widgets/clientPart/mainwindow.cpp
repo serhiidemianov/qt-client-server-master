@@ -74,6 +74,8 @@ void MainWindow::init()
         QLabel *label = new QLabel(QString("Ready"));
 
         // feed data to components
+        comboBox1->addItem("Room #");
+        comboBox2->addItem("Task #");
         comboBox1->addItems(m_rooms);
         comboBox2->addItems(m_tasks);
 
@@ -121,6 +123,10 @@ void MainWindow::setStatus(bool newStatus)
                     tr("<font color=\"green\">CONNECTED</font>"));
         ui->pushButton_connect->setVisible(false);
         ui->pushButton_disconnect->setVisible(true);
+
+        // log message
+        QString message = QString("[connect] Succeed");
+        logMessage(message);
     }
     else
     {
@@ -128,13 +134,18 @@ void MainWindow::setStatus(bool newStatus)
                 tr("<font color=\"red\">DISCONNECTED</font>"));
         ui->pushButton_connect->setVisible(true);
         ui->pushButton_disconnect->setVisible(false);
+
+        // log message
+        QString message = QString("[disconnect] Succeed");
+        logMessage(message);
     }
 }
 
 void MainWindow::receivedSomething(QString msg)
 {
+
     if( msg.startsWith("[URL]")) {
-        ui->pushButton_link->setText(msg.remove(0, 5));
+        ui->pushButton_link->setProperty("link",msg.remove(0, 5));
         ui->pushButton_link->setEnabled(true);
     } else if( msg.startsWith("[STATUS]")) {
         QString str = msg.remove("[STATUS]");
@@ -153,12 +164,13 @@ void MainWindow::receivedSomething(QString msg)
         QComboBox *comboBox2 = qobject_cast<QComboBox*>(hLayout->itemAt(1)->widget());
         QLabel *label = qobject_cast<QLabel*>(hLayout->itemAt(4)->widget());
 
-        // log message
-        QString message = QString("[clear] room:'%1' task:'%2' last_status:'%3'")
-                .arg(comboBox1->currentText())
-                .arg(comboBox2->currentText())
-                .arg(label->text());
-        logMessage(message);
+//        // log message
+//        QString message = QString("[clear] line:'%1' room:'%2' task:'%3' last_status:'%4'")
+//                .arg(id)
+//                .arg(comboBox1->currentText())
+//                .arg(comboBox2->currentText())
+//                .arg(label->text());
+//        logMessage(message);
 
         // reset
         comboBox1->setCurrentIndex(0);
@@ -168,6 +180,9 @@ void MainWindow::receivedSomething(QString msg)
     } else {
         ui->textEdit_log->append(msg);
     }
+
+    // log message
+    logMessage(msg);
 }
 
 void MainWindow::gotError(QAbstractSocket::SocketError err)
@@ -203,15 +218,11 @@ void MainWindow::on_pushButton_connect_clicked()
 void MainWindow::on_pushButton_send_clicked()
 {
     client->sendMessage(ui->lineEdit_message->text());
-//    QByteArray arrBlock;
-//    QDataStream out(&arrBlock, QIODevice::WriteOnly);
-//    //out.setVersion(QDataStream::Qt_5_10);
-//    out << quint16(0) << ui->lineEdit_message->text();
 
-//    out.device()->seek(0);
-//    out << quint16(arrBlock.size() - sizeof(quint16));
-
-//    client->tcpSocket->write(arrBlock);
+    // log message
+    QString message = QString("[msg-send] message:'%1'")
+            .arg(ui->lineEdit_message->text());
+    logMessage(message);
 }
 
 void MainWindow::on_pushButton_disconnect_clicked()
@@ -233,9 +244,17 @@ void MainWindow::onBtnGoClicked() {
         QString room = comboBox1->currentText();
         QString task = comboBox2->currentText();
 
-        QString inst = QString("[GO]%1#%2#%3").arg(room).arg(task).arg(data.toInt());
+        if (room != "Room #" && task != "Task #") {
+            QString inst = QString("[GO]%1#%2#%3").arg(room).arg(task).arg(data.toInt());
+            client->sendMessage(inst);
 
-        client->sendMessage(inst);
+            // log message
+            QString message = QString("[go] room:'%1' task:'%2' last_status:'%3'")
+                    .arg(comboBox1->currentText())
+                    .arg(comboBox2->currentText())
+                    .arg(label->text());
+            logMessage(message);
+        }
     }
 }
 
@@ -280,10 +299,15 @@ void MainWindow::logMessage(QString message) {
 
 void MainWindow::on_pushButton_link_clicked()
 {
-    QString link = ((QPushButton*)sender())->text();
+    QString link = ((QPushButton*)sender())->property("link").toString();
 
     // Specify the URL to open
     QUrl url(link);
     // Use QDesktopServices to open the URL
     QDesktopServices::openUrl(url);
+
+    // log message
+    QString message = QString("[openlink] openlink:'%1'")
+            .arg(link);
+    logMessage(message);
 }
