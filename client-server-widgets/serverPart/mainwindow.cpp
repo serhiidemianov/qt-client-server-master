@@ -95,9 +95,16 @@ void MainWindow::init()
         hLayout->setStretchFactor(button2, 10);
         hLayout->setStretchFactor(button3, 10);
         hLayout->setStretchFactor(button4, 10);
+        hLayout->setSizeConstraint(QLayout::SetMaximumSize);
+        button1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button3->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button4->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button5->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 
         // Add the horizontal layout to the main vertical layout
         ui->layoutTaskSelector->addLayout(hLayout);
+
     }
 }
 

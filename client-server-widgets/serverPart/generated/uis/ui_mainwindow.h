@@ -47,7 +47,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(720, 394);
+        MainWindow->resize(720, 475);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QLatin1String("#centralWidget {\n"
 "	background-color: rgb(122, 210, 246);\n"
@@ -57,6 +57,9 @@ public:
 "}\n"
 "#labelTitle {\n"
 "	font: Bold 30pt \"MS Shell Dlg 2\";\n"
+"}\n"
+"\n"
+"QAbstractButton {\n"
 "}"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -66,6 +69,7 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         labelTitle = new QLabel(centralWidget);
         labelTitle->setObjectName(QStringLiteral("labelTitle"));
+        labelTitle->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
         font.setPointSize(30);
         font.setBold(true);
@@ -78,7 +82,7 @@ public:
         layoutTaskSelector = new QVBoxLayout();
         layoutTaskSelector->setSpacing(6);
         layoutTaskSelector->setObjectName(QStringLiteral("layoutTaskSelector"));
-        layoutTaskSelector->setSizeConstraint(QLayout::SetMaximumSize);
+        layoutTaskSelector->setSizeConstraint(QLayout::SetDefaultConstraint);
 
         gridLayout->addLayout(layoutTaskSelector, 1, 0, 1, 1);
 
@@ -150,13 +154,11 @@ public:
 
         horizontalLayout_2->addWidget(pushButton_stopServer);
 
+        horizontalLayout_2->setStretch(1, 90);
 
         gridLayout->addLayout(horizontalLayout_2, 3, 0, 1, 1);
 
-        gridLayout->setRowStretch(0, 1);
         gridLayout->setRowStretch(1, 90);
-        gridLayout->setRowStretch(2, 1);
-        gridLayout->setRowStretch(3, 1);
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);

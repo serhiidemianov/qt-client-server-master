@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>720</width>
-    <height>394</height>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,12 +25,21 @@ QWidget {
 }
 #labelTitle {
 	font: Bold 30pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QAbstractButton {
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout" rowstretch="1,90,1,1" rowminimumheight="0,0,0,0">
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0,90,0,0">
     <item row="0" column="0">
      <widget class="QLabel" name="labelTitle">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <pointsize>30</pointsize>
@@ -49,7 +58,7 @@ QWidget {
     <item row="1" column="0">
      <layout class="QVBoxLayout" name="layoutTaskSelector">
       <property name="sizeConstraint">
-       <enum>QLayout::SetMaximumSize</enum>
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
      </layout>
     </item>
@@ -82,7 +91,7 @@ QWidget {
      </layout>
     </item>
     <item row="3" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,90,0,0">
       <item>
        <widget class="QPushButton" name="pushButton_startServer">
         <property name="minimumSize">

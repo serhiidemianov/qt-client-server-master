@@ -108,6 +108,11 @@ void MainWindow::init()
         hLayout->setStretchFactor(button2, 1);
         hLayout->setStretchFactor(label, 15);
 
+        comboBox1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        comboBox2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        button2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+
         // Add the horizontal layout to the main vertical layout
         ui->taskSelectorLayout->addLayout(hLayout);
     }
